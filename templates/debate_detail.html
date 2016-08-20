@@ -1,0 +1,36 @@
+{% extends "base.html" %}
+{% load urlfy %}
+
+{%block head_title %}{{instance.title}} | {{block.super}}{% endblock head_title %}
+
+{%block content %}
+<div class='col-sm-9 col-sm-offset-2'>
+{% if instance.image %}
+ <img src='{{ instance.image.url}}' class='img-responsive'/>
+ {% endif %}
+ 
+
+
+
+<h1>{{title}} <small>{% if instance.draft %}<span style='color: red;'>Draft </span>{% endif %}{{instance.publish}}  </small></h1>
+{% if instance.user.get_full_name %}
+     <p>Posted By: {{instance.user}}</p>
+{%endif %}
+    
+
+{{instance.title}}<br/>
+<div class='row'>
+<div class='col-sm-12 '>
+
+  <div class='post-detail-item'>{{instance.get_markdown}}<br/></div>
+
+<p><div class="fb-comments" data-href="{{request.build_absolute_url}}" data-numposts="5"></div>
+ <p/>
+
+
+
+</div>
+</div>
+{% endblock content %}
+
+
